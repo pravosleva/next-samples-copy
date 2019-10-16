@@ -1,5 +1,6 @@
 import Layout from '../components/MyLayout';
 import Link from 'next/link';
+import Markdown from 'react-markdown';
 
 function getPosts() {
   return [
@@ -53,6 +54,17 @@ export default function Blog() {
           <PostLink key={post.id} post={post} />
         ))}
       </ul>
+      <Markdown
+        source={`
+This is our blog post.
+Yes. We can have a [link](/link).
+And we can have a title as well.
+
+### This is a title
+
+And here's the content.
+        `}
+      />
       <style jsx>{`
         h1, a {
           font-family: 'Arial';
@@ -74,6 +86,26 @@ export default function Blog() {
 
         a:hover {
           opacity: 0.6;
+        }
+      `}</style>
+      <style jsx global>{`
+        .markdown {
+          font-family: 'Arial';
+        }
+
+        .markdown a {
+          text-decoration: none;
+          color: blue;
+        }
+
+        .markdown a:hover {
+          opacity: 0.6;
+        }
+
+        .markdown h3 {
+          margin: 0;
+          padding: 0;
+          text-transform: uppercase;
         }
       `}</style>
     </Layout>
